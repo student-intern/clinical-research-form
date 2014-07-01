@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  medical_record_num: MyString
+  en_pid: MyString
+  birth_date: MyString
+  gender: MyString
+  race: MyString
+  ethnicity: MyString
+  consent_date: MyString
+
+two:
+  medical_record_num: MyString
+  en_pid: MyString
+  birth_date: MyString
+  gender: MyString
+  race: MyString
+  ethnicity: MyString
+  consent_date: MyString

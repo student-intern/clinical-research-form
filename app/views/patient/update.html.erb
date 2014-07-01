@@ -1,0 +1,28 @@
+<h3>Update Patient</h3>
+<div class="form-container">
+	<%= form_for(:patient, :url => {:action => 'create'}) do |f| %>
+	
+		<%= f.label(:medical_record_num, "Medical Record Number") %> 
+		<%= f.text_field(:medical_record_num) %>
+		
+		<%= f.label(:en_pid, "Encrypted PID") %> 
+		<%= f.text_field(:en_pid) %>
+		
+		<%= f.label(:birth_date, "Date of Birth") %> 
+		<%= f.text_field(:birth_date) %>
+		
+		<%= f.label(:gender, "Gender") %> 
+		<%= f.select(:gender, ['Male', 'Female']) %>
+		
+		<%= f.label(:race, "Race") %> 
+		<%= f.select(:race, ['Caucasian','Asian','Native Hawaiian Islander','Hispanic','Native 										American/Alaskan','African-American','Unknown']) %>
+				
+		<%= f.label(:ethnicity, "Ethnicity") %> 
+		<%= f.select(:ethnicity, ['Hispanic','Non-Hispanic','Unknown']) %>
+		
+		<%= f.label(:consent_date, "Consent Date") %> 
+		<%= f.text_field(:consent_date) %>
+		
+		<%= submit_tag("Submit", :class => 'button') %>
+		<% end %>
+</div>

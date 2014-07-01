@@ -1,0 +1,78 @@
+// Place all the styles related to the Patient controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.container {
+	width: 40em;
+	position:relative;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.button {
+	display: inline-block;
+	width: 145px;
+	margin-bottom: 20px;
+	
+}
+
+.form-container {
+	width: 25em;
+	position:relative;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid #eaeaea;
+	padding: 30px;
+}
+
+.header-center {
+	width: 20em;
+	position:relative;
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom: 20px;
+}
+
+h1, h2, h3, h4, h5,h6 {
+	text-align: center;
+}
+
+.align-left {
+	position:relative;
+	text-align: left;
+	margin-left: 2em;
+}
+
+label {
+	display: inline-block;
+	width: 200px;
+	text-align: left;
+	margin-bottom: 20px;
+}
+
+input {
+	display: inline-block;
+	width: 145px;
+	margin-bottom: 20px;
+}
+
+select {
+	display: inline-block;
+	width: 150px;
+	margin-bottom: 20px;
+}
+
+table {
+	position:relative;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;
+}
+
+table, th, tr, td {
+	border: 1px solid #aeaeae;
+	width: 30em;
+}
+
+th, tr, td {
+	padding: 10px;
+}

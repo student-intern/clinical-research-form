@@ -1,0 +1,20 @@
+<table class="table-container">
+	<tr>
+		<th>ID</th>
+		<th>Medical Record Number</th>
+		<th>Actions</th>
+	</tr>
+	<% @patient.each do |patient| %>
+	<tr>
+		<td><%= patient.id %></td>
+		<td><%= patient.medical_record_num %></td>
+		<td>
+			<%= link_to("Details", { :action => 'show', :id => patient.id }) %>
+			<%= link_to("Edit", { :action => 'update', :id => patient.id }) %>
+			<%= link_to("Delete", { :action => 'delete', :id => patient.id }) %>
+		</td>
+	</tr>
+	
+	<% end %>
+	
+</table>
