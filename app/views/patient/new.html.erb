@@ -1,33 +1,49 @@
+<h2>New Patient</h2>
+
+<div class="centerAlign">
 <div class="header-center">
 	<h3>SNOFdb Data Collection Sheet</h3>
 	<h4 class="align-left">Disease: ~</h4>
 	<h4 class="align-left">Module: Patient</h4>
 </div>
 
+<%= error_messages_for(@patient) %>
+
 <div class="form-container">
 	<%= form_for(:patient, :url => {:action => 'create'}) do |f| %>
-	
-		<%= f.label(:medical_record_num, "Medical Record Number") %> 
-		<%= f.text_field(:medical_record_num) %>
-		
-		<%= f.label(:en_pid, "Encrypted PID") %> 
-		<%= f.text_field(:en_pid) %>
-		
-		<%= f.label(:birth_date, "Date of Birth") %> 
-		<%= f.text_field(:birth_date) %>
-		
-		<%= f.label(:gender, "Gender") %> 
-		<%= f.select(:gender, ['Male', 'Female']) %>
-		
-		<%= f.label(:race, "Race") %> 
-		<%= f.select(:race, ['Caucasian','Asian','Native Hawaiian Islander','Hispanic','Native 										American/Alaskan','African-American','Unknown']) %>
 				
-		<%= f.label(:ethnicity, "Ethnicity") %> 
-		<%= f.select(:ethnicity, ['Hispanic','Non-Hispanic','Unknown']) %>
-		
-		<%= f.label(:consent_date, "Consent Date") %> 
-		<%= f.text_field(:consent_date) %>
-		
-		<%= submit_tag("Submit", :class => 'button') %>
-		<% end %>
+	<table class="table-condensed">
+	  <tr>
+	    <th><%= f.label(:medical_record_num, "Medical Record Number") %></th>
+	    <td><%= f.text_field(:medical_record_num) %></td>
+	  </tr>
+	  <tr>
+	    <th><%= f.label(:en_pid, "Encrypted PID") %></th>
+	    <td><%= f.text_field(:en_pid) %></td>
+	  </tr>
+	  <tr>
+	    <th><%= f.label(:birth_date, "Date of Birth") %></th>
+	    <td><%= f.text_field(:birth_date) %></td>
+	  </tr>
+	  <tr>
+	    <th><%= f.label(:gender, "Gender") %> </th>
+	    <td><%= f.select(:gender, ['Male', 'Female']) %></td>
+	  </tr>
+	  <tr>
+	    <th><%= f.label(:race, "Race") %></th>
+	    <td><%= f.select(:race, ['Caucasian','Asian','Native Hawaiian Islander','Hispanic','Native 										American/Alaskan','African-American','Unknown']) %></td>
+	  </tr>
+	  <tr>
+	    <th><%= f.label(:ethnicity, "Ethnicity") %></th>
+	    <td><%= f.select(:ethnicity, ['Hispanic','Non-Hispanic','Unknown']) %></td>
+	  </tr>
+	  <tr>
+	    <th><%= f.label(:consent_date, "Consent Date") %></th>
+	    <td><%= f.text_field(:consent_date) %></td>
+	  </tr>
+	</table>
+
+	<%= submit_tag("Submit", :class => 'button btn btn-default') %>
+	<% end %>
+</div>
 </div>

@@ -1,20 +1,31 @@
-<table class="table-container">
-	<tr>
-		<th>ID</th>
-		<th>Medical Record Number</th>
-		<th>Actions</th>
-	</tr>
-	<% @patient.each do |patient| %>
-	<tr>
-		<td><%= patient.id %></td>
-		<td><%= patient.medical_record_num %></td>
-		<td>
-			<%= link_to("Details", { :action => 'show', :id => patient.id }) %>
-			<%= link_to("Edit", { :action => 'update', :id => patient.id }) %>
-			<%= link_to("Delete", { :action => 'delete', :id => patient.id }) %>
-		</td>
-	</tr>
+<div>
+	<h2>Home Page</h2>
 	
-	<% end %>
+	<%= link_to(image_tag('plus_sign.png', :size => '11x11', :alt => '+') + "  New Patient", { :action => 'new' }, :class => 'moveRight') %>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<table class="table table-striped">
+			<tbody>
+				<tr>
+					<th>ID</th>
+					<th>Medical Record Number</th>
+					<th>Actions</th>
+				</tr>
+				<% @patient.each do |patient| %>
+				<tr>
+					<td><%= patient.id %></td>
+					<td><%= patient.medical_record_num %></td>
+					<td>
+						<%= link_to("Details", { :action => 'show', :id => patient.id }) %>
+						<%= link_to("Edit", { :action => 'update', :id => patient.id }) %>
+						<%= link_to("Delete", { :action => 'delete', :id => patient.id }) %>
+					</td>
+				</tr>
 	
-</table>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

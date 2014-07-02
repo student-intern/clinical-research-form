@@ -1,1 +1,13 @@
-<h1>Clinical Research Form</h1>
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container">
+      <%= link_to "CLINICAL RESEARCH FORM", root_path, :class => 'p' %>
+      <nav>
+        <ul class="nav pull-right">
+          <li><%= link_to "Home", root_path, :class => 'p' %></li>
+		  <li><%= link_to "Form", { :action => 'new'}, :class => 'p' %></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>

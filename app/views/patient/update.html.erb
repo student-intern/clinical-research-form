@@ -1,6 +1,10 @@
-<h3>Update Patient</h3>
-<div class="form-container">
-	<%= form_for(:patient, :url => {:action => 'create'}) do |f| %>
+<h2>Update Patient</h2>
+
+<%= error_messages_for(@patient) %>
+
+<div class="centerAlign2">
+	
+	<%= form_for(:patient, :url => {:action => 'edit', :id => @patient.id}) do |f| %>
 	
 		<%= f.label(:medical_record_num, "Medical Record Number") %> 
 		<%= f.text_field(:medical_record_num) %>
@@ -23,6 +27,6 @@
 		<%= f.label(:consent_date, "Consent Date") %> 
 		<%= f.text_field(:consent_date) %>
 		
-		<%= submit_tag("Submit", :class => 'button') %>
+		<%= submit_tag("Submit", :class => 'button2 btn btn-default') %>
 		<% end %>
 </div>
