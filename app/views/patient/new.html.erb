@@ -15,15 +15,11 @@
 	<table class="table-condensed">
 	  <tr>
 	    <th><%= f.label(:medical_record_num, "Medical Record Number") %></th>
-	    <td><%= f.text_field(:medical_record_num) %></td>
-	  </tr>
-	  <tr>
-	    <th><%= f.label(:en_pid, "Encrypted PID") %></th>
-	    <td><%= f.text_field(:en_pid) %></td>
+	    <td><%= f.text_field(:medical_record_num, :placeholder => "16-characters") %></td>
 	  </tr>
 	  <tr>
 	    <th><%= f.label(:birth_date, "Date of Birth") %></th>
-	    <td><%= f.text_field(:birth_date) %></td>
+	    <td><%= f.text_field(:birth_date, :class => "datepicker", :placeholder => "YYYY-MM-DD") %></td>
 	  </tr>
 	  <tr>
 	    <th><%= f.label(:gender, "Gender") %> </th>
@@ -31,7 +27,15 @@
 	  </tr>
 	  <tr>
 	    <th><%= f.label(:race, "Race") %></th>
-	    <td><%= f.select(:race, ['Caucasian','Asian','Native Hawaiian Islander','Hispanic','Native 										American/Alaskan','African-American','Unknown']) %></td>
+	    <td>
+			<%= check_box_tag("patient[race][]", "Caucasian") %>
+			<%= check_box_tag("patient[race][]", "Asian") %>
+			<%= check_box_tag("patient[race][]", "Native Hawaiian Islander") %>
+			<%= check_box_tag("patient[race][]", "Hispanic") %>
+			<%= check_box_tag("patient[race][]", "Native American/Alaskan") %>
+			<%= check_box_tag("patient[race][]", "African-American") %>
+			<%= check_box_tag("patient[race][]", "Unknown") %>
+		</td>
 	  </tr>
 	  <tr>
 	    <th><%= f.label(:ethnicity, "Ethnicity") %></th>
@@ -39,7 +43,7 @@
 	  </tr>
 	  <tr>
 	    <th><%= f.label(:consent_date, "Consent Date") %></th>
-	    <td><%= f.text_field(:consent_date) %></td>
+	    <td><%= f.text_field(:consent_date, :class => "datepicker", :placeholder => "YYYY-MM-DD") %></td>
 	  </tr>
 	</table>
 

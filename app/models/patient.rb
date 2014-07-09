@@ -1,78 +1,68 @@
 class Patient < ActiveRecord::Base
-  
+  serialize :race
   REGEX = /\A\d{4}+[-]+\d{2}+[-]+\d{2}\z/
   VALID_GENDERS = ['Male', 'Female']
-	VALID_RACE = ['Caucasian','Asian','Native Hawaiian Islander','Hispanic','Native American/Alaskan','African-American','Unknown']
+	VALID_RACE = ['Caucasian','Asian','Native Hawaiian Islander', 'Hispanic','Native American/Alaskan','African-American','Unknown']
 	VALID_ETHNICITY = ['Hispanic','Non-Hispanic','Unknown']
   
-  validates :medical_record_num, :presence => true,
-                                 :length => { :maximum => 16 },
-                                 :uniqueness => true
+  #validates :medical_record_num, :presence => true,
+                                 #:length => { :is => 16 },
+                                # :uniqueness => true
                                  
                     
-  validates :en_pid, :presence => true,
-                                 :length => { :maximum => 16 },
-                                 :uniqueness => true
-
+  #validates :en_pid, :presence => true,
+                                 #:length => { :is => 24 },
+                                 #:uniqueness => true
   
-  validate :must_match_gender
+  #validate :check_birth_date
+  #validates :birth_date, :presence => true,
+                         #:format => { :with => REGEX}
   
-  validate :must_match_race
+  #validate :check_consent_date                       
+  #validates :consent_date, :presence => true,
+                          # :format => { :with => REGEX}
+                           
+  #validate :compare_dates
   
-  validate :must_match_ethnicity
   
-  validate :check_for_future
+  #validates :gender, :inclusion => { :in => VALID_GENDERS }
   
-  validate :check_consent_date
+  #validates :race, :inclusion => { :in => VALID_RACE }
+  
+  #validates :ethnicity, :inclusion => { :in => VALID_ETHNICITY}
+  
     
   private
   
-  def check_for_future
-    if birth_date.blank?
-      errors[:base] << "The Birth Date field is blank"
-    else
-      if !REGEX.match(birth_date) || !REGEX.match(consent_date)
-        errors[:base] << "The Birth Date is in wrong format"
-      else
-        if Date.parse(birth_date) > Time.now
-          errors[:base] << "The Birth Date is in future"
-        end
+  def compare_dates
+    birth = Date.parse(birth_date) rescue nil
+    consent = Date.parse(consent_date) rescue nil
+    
+    unless birth.nil? || consent.nil?
+      if consent < birth
+        errors[:base] << "The Consent Date should be greater than Birth Date"
+        errors.add(:consent_date)
       end
     end
   end
   
-  def must_match_gender
-    if VALID_GENDERS.exclude?(gender)
-      errors[:base] << "The choice of gender does not match!"
-    end
-  end
-
-  def must_match_race
-    if VALID_RACE.exclude?(race)
-      errors[:base] << "The choice of race does not match!"
-    end
-  end
-
-  def must_match_ethnicity
-    if VALID_ETHNICITY.exclude?(ethnicity)
-      errors[:base] << "The choice of ethnicity does not match!"
-    end
+  def check_birth_date
+    check_dates(birth_date, "Birth", :birth_date)
   end
   
+  
   def check_consent_date
-    if consent_date.blank?
-      errors[:base] << "The Consent Date field is blank"
-    else
-      if !REGEX.match(consent_date) || !REGEX.match(birth_date)
-        errors[:base] << "The Consent Date or Birth Date is in wrong format"
-      else
-        if Date.parse(consent_date) > Time.now
-          errors[:base] << "The Consent Date is in future"
-        end
-        if Date.parse(consent_date) < Date.parse(birth_date)
-          errors[:base] << "The Consent Date must be greater than Birth Date"
-        end
+    check_dates(consent_date, "Consent", :consent_date)
+  end
+  
+  def check_dates(args, name, symbol)
+    date =  Date.parse(args) rescue nil
+    unless date.nil?
+      if date > Time.now
+        errors[:base] << "The #{name} Date is in future"
+        errors.add(symbol)
       end
     end
   end
 end
+#['Caucasian','Asian','Native Hawaiian Islander','Hispanic','Native 										American/Alaskan','African-American','Unknown']

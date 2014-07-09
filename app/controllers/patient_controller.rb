@@ -11,6 +11,7 @@ class PatientController < ApplicationController
     @patient = Patient.new(argument_list)
     
     if @patient.save
+      @patient.update_attributes(:en_pid => encrypt_pid)
       redirect_to(:action => 'index')
     else
       render('new')
@@ -46,6 +47,13 @@ class PatientController < ApplicationController
   private
   
   def argument_list
-    params.require(:patient).permit(:medical_record_num, :en_pid, :birth_date, :gender, :race, :ethnicity, :consent_date, :created_at)
+    params.require(:patient).permit(:medical_record_num, :birth_date, :gender, :race, :ethnicity, :consent_date, :created_at)
+  end
+  
+  def encrypt_pid
+    salt  = SecureRandom.random_bytes(64)
+    key   = ActiveSupport::KeyGenerator.new('password').generate_key(salt)
+    crypt = ActiveSupport::MessageEncryptor.new(key)
+    encrypted_pid = crypt.encrypt_and_sign(:medical_record_num).first(24)
   end
 end
