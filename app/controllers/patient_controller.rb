@@ -9,7 +9,7 @@ class PatientController < ApplicationController
   
   def create
     @patient = Patient.new(argument_list)
-    @patient.en_pid = @patient.encrypt_pid
+    @patient.encrypt_pid(@patient)
     
     if @patient.save
       redirect_to(:action => 'index')

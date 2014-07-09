@@ -32,11 +32,11 @@ class Patient < ActiveRecord::Base
   
   validates :ethnicity, :inclusion => { :in => VALID_ETHNICITY}
  
- def encrypt_pid
+ def encrypt_pid(attribute)
    salt  = SecureRandom.random_bytes(64)
    key   = ActiveSupport::KeyGenerator.new('password').generate_key(salt)
    crypt = ActiveSupport::MessageEncryptor.new(key)
-   en_pid = crypt.encrypt_and_sign(:medical_record_num).first(24)
+   attribute.en_pid = crypt.encrypt_and_sign(:medical_record_num).first(24)
  end
     
   private
